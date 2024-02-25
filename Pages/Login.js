@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, Text
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const logoImage = require('../img/pixgen_logo.png');
+const logoImg = require('../img/PixGen.png')
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -16,18 +17,18 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white', alignItems: 'center' }}>
-      <View style={{ marginTop: 50 }}>
-        <Image
-          style={{ width: 150, height: 100, resizeMode: 'contain' }}
-          source={logoImage} 
-        />
-      </View>
+      <KeyboardAvoidingView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+        <View style={{ marginTop: 50, alignItems: 'center' }}>
+          <Image
+            style={{ width: 150, height: 100, resizeMode: 'contain' }}
+            source={logoImg} 
+          />
+        </View>
 
-      <KeyboardAvoidingView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 20, marginBottom: 20 }}>Login to your Account</Text>
+        <View style={{ width: '80%', alignItems: 'center' }}>
+          <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 20, marginBottom: 20, textAlign: 'center' }}>Login to your Account</Text>
 
-        <View style={{ marginVertical: 20, width: '80%' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'gray', paddingBottom: 5 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'gray', paddingBottom: 5, width: '100%' }}>
             <Icon
               name="email"
               size={24}
@@ -43,7 +44,7 @@ const Login = ({ navigation }) => {
             />
           </View>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'gray', paddingBottom: 5, marginTop: 20 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'gray', paddingBottom: 5, marginTop: 20, width: '100%' }}>
             <Icon
               name="lock"
               size={24}
@@ -60,12 +61,12 @@ const Login = ({ navigation }) => {
             />
           </View>
 
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 20 }}>
-            <TouchableOpacity onPress={() => setRememberMe(!rememberMe)} style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={[styles.checkbox, rememberMe && styles.checked]} />
-              <Text>Keep me logged in</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 20, width: '100%' }}>
+            <TouchableOpacity onPress={() => setRememberMe(!rememberMe)} style={[styles.checkbox, rememberMe && styles.checked]}>
+              {rememberMe && <Icon name="done" size={14} color="white" />}
             </TouchableOpacity>
-            <Text style={{ fontWeight: '500', color: '#007FFF' }}>  Forgot Password</Text>
+            <Text>Keep me logged in</Text>
+            <Text style={{ fontWeight: '500', color: '#007FFF', textAlign: 'right' }}>  Forgot Password</Text>
           </View>
         </View>
 
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   checked: {
-    backgroundColor: 'black',
+    backgroundColor: 'gray',
   },
 });
 
