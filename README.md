@@ -1,13 +1,12 @@
-```markdown
-# Welcome to [Project Name]!
+# Welcome to Project PixGen!
 
-Thank you for your interest in contributing to [Project Name]! Your contributions help make this project better for everyone. Whether you're a developer, designer, tester, or documentation enthusiast, there are many ways you can contribute.
+Thank you for your interest in contributing to Project PixGen! Your contributions help make this project better for everyone. Whether you're a developer, designer, tester, or documentation enthusiast, there are many ways you can contribute.
 
 ## How to Contribute
 
 ### 1. Reporting Issues
 
-If you encounter a bug, have a feature request, or notice something that needs improvement, please open an issue on our [GitHub repository](https://github.com/your-username/project-name/issues). Make sure to provide as much detail as possible, including steps to reproduce the issue if applicable.
+If you encounter a bug, have a feature request, or notice something that needs improvement, please open an issue on our [GitHub repository](https://github.com/AnukulPr1me/Project-PixGen/issues). Make sure to provide as much detail as possible, including steps to reproduce the issue if applicable.
 
 ### 2. Submitting Pull Requests (PRs)
 
@@ -18,8 +17,8 @@ We welcome code contributions through pull requests! Here's how you can contribu
 2. **Clone your fork**: Clone the repository to your local machine using Git.
 
    ```bash
-   git clone https://github.com/your-username/project-name.git
-   ```
+   git clone https://github.com/AnukulPr1me/Project-PixGen.git
+
 
 3. **Create a new branch**: Create a new branch for your changes.
 
