@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken'); // Import jwt module
 
+
 const app = express();
 const port = 3000;
 const cors = require('cors');
@@ -40,7 +41,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
         service: 'gmail',
         auth: {
             user: "n0one4u2kill@gmail.com",
-            pass: "jslcyroragsyfuwy"
+            pass: "kaygfnynugtidoxp"
         }
     });
 
@@ -57,6 +58,19 @@ const sendVerificationEmail = async (email, verificationToken) => {
         console.log("Error sending verification email:", error);
     }
 }
+
+// Function to generate a persistent secret key
+const generateSecretKey = () => {
+    // Check if the secret key is already generated
+    if (!process.env.SECRET_KEY) {
+        // Generate a new secret key if not already generated
+        process.env.SECRET_KEY = crypto.randomBytes(32).toString("hex");
+    }
+    return process.env.SECRET_KEY;
+};
+
+// Secret key generation
+const secretKey = generateSecretKey();
 
 // Endpoint for user registration
 app.post('/register', async (req, res) => {
@@ -101,7 +115,8 @@ app.get("/verify/:token", async (req, res) => {
             return res.status(400).json({ message: "Invalid verification token" });
         }
 
-        user.verified = true; // Corrected typo: 'verfied' to 'verified'
+        // Mark user as verified and remove verification token
+        user.verified = true;
         user.verificationToken = undefined;
         await user.save();
         res.status(200).json({ message: "User verified successfully" });
@@ -110,15 +125,6 @@ app.get("/verify/:token", async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
-
-// Function to generate secret key
-const generateSecretKey = () => {
-    const secretKey = crypto.randomBytes(32).toString("hex");
-    return secretKey;
-};
-
-// Secret key generation
-const secretKey = generateSecretKey();
 
 // Endpoint for user login
 app.post('/login', async (req, res) => {
@@ -134,6 +140,7 @@ app.post('/login', async (req, res) => {
             return res.status(400).json({ message: "Invalid Password" });
         }
 
+        // Sign JWT token using the secret key
         const token = jwt.sign({ userId: user._id }, secretKey);
         res.status(200).json({ token });
     } catch (error) {
@@ -141,3 +148,11 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+app.get('/', (req, res) => {
+    res.send('Welcome to PixGen!'); // Send a welcome message or render a homepage
+});
+app.get('/register', (req, res) => {
+    res.send('GET request to /register endpoint');
+});
+  

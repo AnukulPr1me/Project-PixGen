@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, TextInput, Pressable, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import axios from 'axios'; // Import axios for HTTP requests
 
-const logoImage = require('../img/pixgen_logo.png');
 const logoImg = require('../img/PixGen.png');
 
 const Register = ({ navigation }) => {
@@ -11,36 +11,30 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
+  // Function to handle registration
   const handleRegister = () => {
-    // Implement registration logic
-    console.log('Registering...');
+    // User object with registration data
+    const user = {
+      name: name,
+      email: email,
+      password: password,
+    };
 
-    // Example of registering using fetch API
-    fetch('http://localhost:3000/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-      }),
+    // HTTP POST request to register user
+    axios
+      .post("http://192.168.1.8:3000/register", user)
+      .then((response) => {
+      console.log('Registration response:', response);
+      Alert.alert('Registration successful', 'You have been registered successfully');
+      setName('');
+      setEmail('');
+      setPassword('');
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Registration response:', data);
-        Alert.alert('Registration successful', 'You have been registered successfully');
-        // Reset input fields
-        setName('');
-        setEmail('');
-        setPassword('');
-      })
-      .catch(error => {
-        console.error('Error during registration:', error);
-        Alert.alert('Registration failed', 'An error occurred during registration');
-      });
-  };
+    .catch(error => {
+      console.error('Error during registration:', error);
+      Alert.alert('Registration failed', 'An error occurred during registration');
+    });
+};
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white', alignItems: 'center' }}>
@@ -55,6 +49,7 @@ const Register = ({ navigation }) => {
         <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 20, marginBottom: 20 }}>Register an Account</Text>
 
         <View style={{ marginVertical: 20, width: '80%' }}>
+          {/* Input field for name */}
           <View style={styles.inputContainer}>
             <Icon
               name="person"
@@ -71,6 +66,7 @@ const Register = ({ navigation }) => {
             />
           </View>
 
+          {/* Input field for email */}
           <View style={styles.inputContainer}>
             <Icon
               name="email"
@@ -87,6 +83,7 @@ const Register = ({ navigation }) => {
             />
           </View>
 
+          {/* Input field for password */}
           <View style={styles.inputContainer}>
             <Icon
               name="lock"
@@ -104,6 +101,7 @@ const Register = ({ navigation }) => {
             />
           </View>
 
+          {/* Checkbox for 'remember me' */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 20 }}>
             <TouchableOpacity onPress={() => setRememberMe(!rememberMe)} style={[styles.checkbox, rememberMe && styles.checked]}>
               {rememberMe && <Icon name="done" size={14} color="white" />}
@@ -113,6 +111,7 @@ const Register = ({ navigation }) => {
           </View>
         </View>
 
+        {/* Register button */}
         <Pressable
           onPress={handleRegister}
           style={{
@@ -135,6 +134,7 @@ const Register = ({ navigation }) => {
           </Text>
         </Pressable>
 
+        {/* Link to login screen */}
         <Pressable
           onPress={() => navigation.navigate('Login')}
           style={{ marginTop: 10 }}

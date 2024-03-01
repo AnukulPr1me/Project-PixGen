@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AsyncStorage } from 'react-native';
 import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, TextInput, Pressable, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -11,9 +12,24 @@ const Login = ({ navigation }) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = () => {
-    // Implement login logic
-    console.log('Logging in...');
+    const user = {
+      email: email,
+      password: password
+    };
+  
+    axios.post('http://192.168.1.8:3000/login', user)
+      .then((response) => {
+        console.log('Logging in...');
+        const token = response.data.token;
+        AsyncStorage.setItem("authToken", token)
+        // Handle successful login response here
+      })
+      .catch((error) => {
+        console.error('Error during login:', error);
+        // Handle login error here
+      });
   };
+  
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'white', alignItems: 'center' }}>
