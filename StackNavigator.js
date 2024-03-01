@@ -6,6 +6,7 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import Logo_screen from './Pages/Logo_screen'
 import Onboarding_UI from './Pages/Onboarding_UI'
+import Home from './Pages/Home'
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -16,6 +17,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Onboarding_UI" component={Onboarding_UI} options={{headerShown:false}}/>
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
+        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

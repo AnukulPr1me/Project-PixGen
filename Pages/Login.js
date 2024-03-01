@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { AsyncStorage } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View, SafeAreaView, Image, KeyboardAvoidingView, TextInput, Pressable, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import axios from 'axios';
+import Home from './Home';
 
 const logoImage = require('../img/pixgen_logo.png');
 const logoImg = require('../img/PixGen.png')
@@ -10,6 +13,23 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const CheckLoginStatus = async () => {
+      try {
+        const token = await AsyncStorage.getItem('authToken');
+        if (token) {
+          setTimeout(() => {
+            navigation.replace('Home');
+          }, 400);
+        }
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    CheckLoginStatus();
+  });
+
 
   const handleLogin = () => {
     const user = {
@@ -21,10 +41,12 @@ const Login = ({ navigation }) => {
       .then((response) => {
         console.log('Logging in...');
         const token = response.data.token;
-        AsyncStorage.setItem("authToken", token)
+        AsyncStorage.setItem("authToken", token);
+        navigation.navigate("Home");
         // Handle successful login response here
       })
       .catch((error) => {
+        Alert.alert("Login Error",error.message);
         console.error('Error during login:', error);
         // Handle login error here
       });
