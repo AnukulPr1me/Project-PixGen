@@ -16,7 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://anukul:anukulpr1me@cluster0.wesa1rc.mongodb.net/", {
+// mongoose.connect("mongodb+srv://anukul:anukulpr1me@cluster0.wesa1rc.mongodb.net/",
+mongoose.connect("mongodb://localhost:27017/",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {

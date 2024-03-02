@@ -2,6 +2,7 @@ import { StackActions } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 const logoImg = require('../img/PixGen.png');
+import * as Animatable from 'react-native-animatable';
 
 const LogoScreen = ({ navigation }) => {
     useEffect(() => {
@@ -14,7 +15,7 @@ const LogoScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Image source={logoImg} style={styles.logo} />
             {/* Wrap the text string in a <Text> component */}
-            <Text style={{fontSize: 25, fontWeight: 200}}>PIXGEN</Text>
+            <Animatable.Text style={{fontSize: 30, fontWeight: 200}} duration={3000} animation="fadeIn">PIXGEN</Animatable.Text>
         </View>
     )
 }
