@@ -12,8 +12,8 @@ const StackNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Logo" component={Logo_screen} options={{ headerShown: false }} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
         <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>

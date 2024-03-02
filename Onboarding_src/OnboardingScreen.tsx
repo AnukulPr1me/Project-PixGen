@@ -1,5 +1,7 @@
+import React, { useEffect } from 'react';
 import { StyleSheet, View, FlatList, ViewToken } from 'react-native';
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage from '@react-native-async-storage/async-storage' 
+
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -14,6 +16,27 @@ const OnboardingScreen = () => {
   const flatListRef = useAnimatedRef<FlatList<OnboardingData>>();
   const x = useSharedValue(0);
   const flatListIndex = useSharedValue(0);
+
+  useEffect(() => {
+    checkOnboardingStatus();
+  }, []);
+
+  const checkOnboardingStatus = async () => {
+    try {
+      const onboardingShown = await AsyncStorage.getItem('onboardingShown');
+      if (!onboardingShown) {
+        // Onboarding screen has not been shown before
+        // Set a flag to indicate that it has been shown
+        await AsyncStorage.setItem('onboardingShown', 'true');
+      } else {
+        // Onboarding screen has been shown before, navigate away or do something else
+        // For example, you can navigate to another screen using navigation.navigate('MainScreen')
+        console.log('Onboarding screen has been shown before');
+      }
+    } catch (error) {
+      console.error('Error checking onboarding status:', error);
+    }
+  };
 
   const onViewableItemsChanged = ({
     viewableItems,

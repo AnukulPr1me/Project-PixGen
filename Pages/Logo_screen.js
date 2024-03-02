@@ -3,14 +3,39 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 const logoImg = require('../img/PixGen.png');
 import * as Animatable from 'react-native-animatable';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LogoScreen = ({ navigation }) => {
     useEffect(() => {
-        const timer = setTimeout(() => {
-            navigation.dispatch(StackActions.replace('Login'));
-        }, 3000);
-        return () => clearTimeout(timer);
+        const checkOnboardingStatus = async () => {
+            try {
+                const onboardingShown = await AsyncStorage.getItem('onboardingShown');
+                if (!onboardingShown) {
+                    // Onboarding screen has not been shown before
+                    // Redirect to the onboarding screen
+                    setTimeout(() => {
+                        // Redirect to the onboarding screen
+                        navigation.dispatch(StackActions.replace('Onboarding'));
+                    }, 3000);
+                    // Set a flag to indicate that it has been shown
+                    await AsyncStorage.setItem('onboardingShown', 'true');
+                } else {
+                    // Onboarding screen has been shown before
+                    // Display the logo screen for at least 3000ms before redirecting to login
+                    setTimeout(() => {
+                        console.log('Onboarding screen has been shown before');
+                        navigation.dispatch(StackActions.replace('Login'));
+                    }, 3000);
+                }
+            } catch (error) {
+                console.error('Error checking onboarding status:', error);
+            }
+        };
+
+        checkOnboardingStatus();
+
     }, [navigation]);
+
     return (
         <View style={styles.container}>
             <Image source={logoImg} style={styles.logo} />
