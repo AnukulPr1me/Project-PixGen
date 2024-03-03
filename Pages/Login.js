@@ -112,7 +112,7 @@ const Login = ({ navigation }) => {
           onPress={handleLogin}
           style={{
             width: 200,
-            backgroundColor: "black",
+            backgroundColor: 'black',
             padding: 15,
             marginTop: 40,
             borderRadius: 6,

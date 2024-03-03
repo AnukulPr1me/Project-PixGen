@@ -40,7 +40,7 @@ const LogoScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Image source={logoImg} style={styles.logo} />
             {/* Wrap the text string in a <Text> component */}
-            <Animatable.Text style={{fontSize: 30, fontWeight: 200}} duration={3000} animation="fadeIn">PIXGEN</Animatable.Text>
+            <Animatable.Text style={{fontSize: 30, fontWeight: 400, color: 'black'}} duration={3000} animation="fadeIn">PIXGEN</Animatable.Text>
         </View>
     )
 }
