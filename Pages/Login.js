@@ -37,7 +37,7 @@ const Login = ({ navigation }) => {
       password: password
     };
   
-    axios.post('http://192.168.1.8:3000/login', user)
+    axios.post('http://192.168.1.14:3000/login', user)
       .then((response) => {
         console.log('Logging in...');
         const token = response.data.token;

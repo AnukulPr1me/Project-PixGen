@@ -22,7 +22,7 @@ const Register = ({ navigation }) => {
 
     // HTTP POST request to register user
     axios
-      .post("http://192.168.1.8:3000/register", user)
+      .post("http://192.168.1.14:3000/register", user)
       .then((response) => {
       console.log('Registration response:', response);
       Alert.alert('Registration successful', 'You have been registered successfully');

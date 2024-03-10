@@ -11,24 +11,24 @@ export interface OnboardingData {
 const data: OnboardingData[] = [
   {
     id: 1,
-    animation: require('../assets/animations/Lottie1.json'),
-    text: 'Lorem Ipsum dolor sit amet',
+    animation: require('../assets/animations/Intractive.json'),
+    text: 'The UI fosters positive user engagement.',
     textColor: '#005b4f',
-    backgroundColor: '#ffa3ce',
+    backgroundColor: '#E1FFAF',
   },
   {
     id: 2,
-    animation: require('../assets//animations/Lottie2.json'),
-    text: 'Lorem Ipsum dolor sit amet',
+    animation: require('../assets//animations/RockStar.json'),
+    text: 'Express your artistic side using AI.',
     textColor: '#1e2169',
-    backgroundColor: '#bae4fd',
+    backgroundColor: '#C6CCFE',
   },
   {
     id: 3,
-    animation: require('../assets//animations/Lottie3.json'),
-    text: 'Lorem Ipsum dolor sit amet',
+    animation: require('../assets//animations/Cat_Chilling.json'),
+    text: 'Share your image, react to others, and chill.',
     textColor: '#F15937',
-    backgroundColor: '#faeb8a',
+    backgroundColor: '#FFF1A3',
   },
 ];
 
