@@ -8,11 +8,12 @@ import Logo_screen from './Pages/Logo_screen';
 import OnboardingScreen from './Onboarding_src/OnboardingScreen';
 import Home from './Pages/Home';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Search from './Pages/Search';
 import AddPost from './Pages/AddPost';
 import Profile from './Pages/Profile';
-
+import AIComponent from './Pages/AIComponent';
+import CustomHeader from './Pages/CustomHeader';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -40,12 +41,11 @@ const StackNavigator = () => {
                   size={24}
                   color={focused ? 'blue' : 'black'}
                 />
-
               ),
           }}
         />
 
-<tab.Screen
+        <tab.Screen
           name="Search"
           component={Search}
           options={{
@@ -65,12 +65,27 @@ const StackNavigator = () => {
                   size={24}
                   color={focused ? 'blue' : 'black'}
                 />
-
               ),
           }}
         />
+        <tab.Screen
+          name="AI"
+          component={AIComponent}
+          options={{
+            tabBarLabel: 'AI',
+            tabBarStyle: {color: 'black'},
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <Icon
+                name="android"
+                size={24}
+                color={focused ? 'blue' : 'black'}
+              />
+            ),
+          }}
+        />
 
-<tab.Screen
+        <tab.Screen
           name="AddPost"
           component={AddPost}
           options={{
@@ -79,23 +94,14 @@ const StackNavigator = () => {
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
-                <Icon
-                  name="add"
-                  size={24}
-                  color={focused ? 'blue' : 'black'}
-                />
+                <Icon name="add" size={24} color={focused ? 'blue' : 'black'} />
               ) : (
-                <Icon
-                  name="add"
-                  size={24}
-                  color={focused ? 'blue' : 'black'}
-                />
-
+                <Icon name="add" size={24} color={focused ? 'blue' : 'black'} />
               ),
           }}
         />
 
-<tab.Screen
+        <tab.Screen
           name="Profile"
           component={Profile}
           options={{
@@ -115,7 +121,6 @@ const StackNavigator = () => {
                   size={24}
                   color={focused ? 'blue' : 'black'}
                 />
-
               ),
           }}
         />
@@ -148,7 +153,8 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Main"
           component={ButtonTab}
-          options={{headerShown: false}}
+          options={{ header: () => <CustomHeader title="PIXGEN" />,
+            headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>
