@@ -14,6 +14,7 @@ import AddPost from './Pages/AddPost';
 import Profile from './Pages/Profile';
 import AIComponent from './Pages/AIComponent';
 import CustomHeader from './Pages/CustomHeader';
+import Activity from './Pages/Activity';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -46,22 +47,22 @@ const StackNavigator = () => {
         />
 
         <tab.Screen
-          name="Search"
-          component={Search}
+          name="AddPost"
+          component={AddPost}
           options={{
-            tabBarLabel: 'Search',
+            tabBarLabel: 'AddPost',
             tabBarStyle: {color: 'Black'},
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <Icon
-                  name="search"
+                  name="add"
                   size={24}
                   color={focused ? 'blue' : 'black'}
                 />
               ) : (
                 <Icon
-                  name="search"
+                  name="add"
                   size={24}
                   color={focused ? 'blue' : 'black'}
                 />
@@ -86,17 +87,17 @@ const StackNavigator = () => {
         />
 
         <tab.Screen
-          name="AddPost"
-          component={AddPost}
+          name="Activity"
+          component={Activity}
           options={{
-            tabBarLabel: 'AddPost',
+            tabBarLabel: 'Activity',
             tabBarStyle: {color: 'Black'},
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
-                <Icon name="add" size={24} color={focused ? 'blue' : 'black'} />
+                <Icon name="notifications" size={24} color={focused ? 'blue' : 'black'} />
               ) : (
-                <Icon name="add" size={24} color={focused ? 'blue' : 'black'} />
+                <Icon name="notifications" size={24} color={focused ? 'blue' : 'black'} />
               ),
           }}
         />
