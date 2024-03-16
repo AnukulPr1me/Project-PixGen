@@ -87,7 +87,7 @@ Your feedback helps us understand what's working well and what needs improvement
 
 ## Structure of the Project
 
-Please note that we have a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect all contributors to adhere to. By participating in this project, you agree to abide by its terms.
+First, as you can see in the structure of the app in the flow chart, you will notice that it is a social media app for AI-generated images, or you can share your own image. The difference between other social media and this app is that we are going to provide certain AI tools to the user, which will help them in their day-to-day life.
 ![PixGen_plans-1](https://github.com/AnukulPr1me/Project-PixGen/assets/101039186/883b643d-774d-4770-8f80-109a612d1c18)
 
 
