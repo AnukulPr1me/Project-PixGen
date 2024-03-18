@@ -98,7 +98,3 @@ This project is licensed under the [License Name](LICENSE.md) - see the [LICENSE
 
 
 ---
-
-We appreciate your interest in contributing to [Project Name]! If you have any questions or need assistance, don't hesitate to reach out to us.
-```
-Replace `[Project Name]`, `your-username`, and `project-name` with the actual name of your React Native project and GitHub username. This README provides clear instructions on how contributors can get involved in various aspects of the project.
