@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const Activity = () => {
   const [selectButton, setSelectButton] = useState('people');
   const [content, setContent] = useState('people_content');
+
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const token = await AsyncStorage.getItem("authToken");
+      const decodedToken = jwt_decode(token);
+      const userId = decodedToken.userId;
+      setUserId(userId);
+
+      axios
+        .get(`http://localhost:3000/user/${userId}`)
+        .then((response) => {
+          setUsers(response.data);
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    };
+
+    fetchUsers();
+  }, []);
   
   return (
     <View style={{ marginTop: 10 }}>
