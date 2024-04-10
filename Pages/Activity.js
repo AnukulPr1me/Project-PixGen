@@ -1,60 +1,80 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 
 const Activity = () => {
   const [selectButton, setSelectButton] = useState('people');
   const [content, setContent] = useState('people_content');
-
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const token = await AsyncStorage.getItem("authToken");
-      const decodedToken = jwt_decode(token);
-      const userId = decodedToken.userId;
-      setUserId(userId);
-
-      axios
-        .get(`http://localhost:3000/user/${userId}`)
-        .then((response) => {
-          setUsers(response.data);
-        })
-        .catch((error) => {
-          console.log("error", error);
-        });
-    };
-
-    fetchUsers();
-  }, []);
+  const handleButtonClick = (buttonName) => {
+    setSelectButton(buttonName);
+  };
   
   return (
-    <View style={{ marginTop: 10 }}>
-      <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'black' }}>
-        Activity
-      </Text>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <TouchableOpacity
-          style={[
-            {
-              flex: 1,
-              paddingVertical: 10,
-              paddingHorizontal: 10,
-              borderRadius: 10,
-              borderWidth: 1,
-              backgroundColor: 'white',
-              alignItems: 'center',
-              justifyContent: 'center',
+    <ScrollView style={{marginTop: 15}}>
+      <View>
+        <Text style={{fontSize: 18, fontWeight: 'bold'}}>Activity</Text>
+        <View style={{flexDirection:"row", alignItems:"center",gap:10,marginTop:12}}>
+
+          <TouchableOpacity 
+          onPress={() => handleButtonClick("people")}
+            style={[{
+              flex:1,
+              paddingVertical:10,
+              paddingHorizontal:20,
+              backgroundColor: "white",
+              borderColor: "#D0D0D0",
+              borderRadius:10,
+              borderWidth:0.7
             },
-            selectButton === 'people' ? { backgroundColor: 'black' } : null,
+            selectButton==="people"? {backgroundColor: "black"} : null,
           ]}
-          onPress={() => setSelectButton('people')}>
-          <Text style={[{ textAlign: 'center', fontWeight: 'bold' }, selectButton === 'people' ? { color: 'white' } : { color: 'black' }]}>
-            People
-          </Text>
-        </TouchableOpacity>
+          >
+            <Text style={[{textAlign:"center", fontWeight:"bold"}, selectButton==="people" ? {color:"white"}: {color:"black"}]}>
+              People
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={[{
+              flex:1,
+              paddingVertical:10,
+              paddingHorizontal:20,
+              backgroundColor: "white",
+              borderColor: "#D0D0D0",
+              borderRadius:10,
+              borderWidth:0.7
+            },
+            selectButton==="all"? {backgroundColor: "black"} : null,
+          ]}
+            onPress={() => setSelectButton('all')}
+          >
+            <Text style={[{textAlign:"center", fontWeight:"bold"}, selectButton==="all" ? {color:"white"}: {color:"black"}]}>
+              All
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[{
+              flex:1,
+              paddingVertical:10,
+              paddingHorizontal:20,
+              backgroundColor: "white",
+              borderColor: "#D0D0D0",
+              borderRadius:10,
+              borderWidth:0.7
+            },
+            selectButton==="request"? {backgroundColor: "black"} : null,
+          ]}
+            onPress={() => setSelectButton('request')}
+          >
+            <Text style={[{textAlign:"center", fontWeight:"bold"}, selectButton==="request" ? {color:"white"}: {color:"black"}]}>
+              Request
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default Activity;
+
 const styles = StyleSheet.create({});
