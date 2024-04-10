@@ -9,7 +9,7 @@ const Activity = () => {
   };
   
   return (
-    <ScrollView style={{marginTop: 15}}>
+    <ScrollView style={{marginTop: 5}}>
       <View>
         <Text style={{fontSize: 18, fontWeight: 'bold'}}>Activity</Text>
         <View style={{flexDirection:"row", alignItems:"center",gap:10,marginTop:12}}>
@@ -45,7 +45,7 @@ const Activity = () => {
             },
             selectButton==="all"? {backgroundColor: "black"} : null,
           ]}
-            onPress={() => setSelectButton('all')}
+            onPress={() => handleButtonClick('all')}
           >
             <Text style={[{textAlign:"center", fontWeight:"bold"}, selectButton==="all" ? {color:"white"}: {color:"black"}]}>
               All
@@ -63,7 +63,7 @@ const Activity = () => {
             },
             selectButton==="request"? {backgroundColor: "black"} : null,
           ]}
-            onPress={() => setSelectButton('request')}
+            onPress={() => handleButtonClick('request')}
           >
             <Text style={[{textAlign:"center", fontWeight:"bold"}, selectButton==="request" ? {color:"white"}: {color:"black"}]}>
               Request
