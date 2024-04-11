@@ -1,12 +1,40 @@
 import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { UserType } from "../UserContext";
+
+
 
 const Activity = () => {
   const [selectButton, setSelectButton] = useState('people');
   const [content, setContent] = useState('people_content');
+  const [users, setUsers] = useState([]);
+  const { userId, setUserId } = useContext(UserType);
   const handleButtonClick = (buttonName) => {
     setSelectButton(buttonName);
   };
+  useEffect(() => { 
+    const fetchUsers = async () => {
+      const token = await AsyncStorage.getItem("authToken");
+      const decodedToken = jwt_decode(token);
+      const userId = decodedToken.userId;
+      setUserId(userId);
+
+      axios
+        .get(`http://192.168.29.4:3000/user/${userId}`)
+        .then((response) => {
+          setUsers(response.data);
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    };
+
+    fetchUsers();
+
+  }, []);
   
   return (
     <ScrollView style={{marginTop: 5}}>

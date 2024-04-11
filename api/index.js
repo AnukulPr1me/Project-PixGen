@@ -156,4 +156,20 @@ app.get('/', (req, res) => {
 app.get('/register', (req, res) => {
     res.send('GET request to /register endpoint');
 });
+
+app.get("/user/:userId", (req, res) => {
+    try {
+      const loggedInUserId = req.params.userId;
   
+      User.find({ _id: { $ne: loggedInUserId } })
+        .then((users) => {
+          res.status(200).json(users);
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+          res.status(500).json("errror");
+        });
+    } catch (error) {
+      res.status(500).json({ message: "error getting the users" });
+    }
+  });
